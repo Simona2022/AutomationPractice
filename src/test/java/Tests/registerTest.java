@@ -1,11 +1,11 @@
 package Tests;
 
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class registerTest {
 
@@ -53,6 +53,38 @@ public class registerTest {
         String password2value="12345";
         password2Element.sendKeys(password2value);
 
+        WebElement languageElement=driver.findElement(By.id("msdd"));
+        languageElement.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,300)");
+        List<WebElement> languageOption= driver.findElements(By.cssSelector("ul.ui-autocomplete.ui-front>li>a"));
+        for (int index=0; index< languageOption.size();index++){
+            if (languageOption.get(index).getText().equals("Arabic")
+                    || (languageOption.get(index).getText().equals("Bulgarian"))){
+                languageOption.get(index).click();
+            }
+            if (languageOption.get(index).getText().equals("English")) {
+                languageOption.get(index).click();
+            }
+
+        }
+        genderElement.click();
+
+        WebElement selectElement=driver.findElement(By.cssSelector("span[role='combobox']"));
+        selectElement.click();
+
+
+        WebElement countyinputElement=driver.findElement(By.className("select2-search__field"));
+        countyinputElement.sendKeys("Australia");
+        countyinputElement.sendKeys(Keys.ENTER);
+
+        WebElement yearElement=driver.findElement(By.id("yearbox"));
+        Select yearSelect= new Select(yearElement);
+        yearSelect.selectByValue("1995");
+        yearElement.click();
+
+        WebElement uploadphotoElement=driver.findElement(By.cssSelector("div>input[id=\"imagesrc\"]"));
+        uploadphotoElement.sendKeys("C:\\Users\\Simona\\Desktop\\1.JPG");
 
 
 
