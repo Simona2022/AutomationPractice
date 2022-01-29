@@ -1,5 +1,6 @@
 package Tests;
 
+import Base.SharedData;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,15 +8,12 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class registerTest {
+public class registerTest extends SharedData {
 
-    public WebDriver driver;
 
     @Test
     public void register(){
-        System.setProperty("webdriver.chrome.driver","C:\\Automation\\chromedriver.exe");
-        driver=new ChromeDriver();
-        driver.get("http://demo.automationtesting.in/Index.html");
+
 
         WebElement skipElement=driver.findElement(By.id("btn2"));
         skipElement.click();
