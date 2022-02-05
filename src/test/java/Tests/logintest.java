@@ -1,6 +1,7 @@
 package Tests;
 
 import Base.SharedData;
+import Help.ElementMethod;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,11 +12,10 @@ public class logintest extends SharedData {
 
 
     //declaram variabila web driver
-
-
+    public ElementMethod elementMethod;
     @Test
     public void login(){
-
+    elementMethod=new ElementMethod(driver);
 
         WebElement signinElement=driver.findElement(By.id("btn1"));
         signinElement.click();
@@ -27,6 +27,10 @@ public class logintest extends SharedData {
         parolaElement.sendKeys(parolavalue);
         WebElement enterElement=driver.findElement(By.id("enterbtn"));
         enterElement.click();
+
+        WebElement errorElemnt=driver.findElement(By.id(""));
+        elementMethod.validateElementtest(errorElemnt,"invalid password or adress");
+
 
     }
 }

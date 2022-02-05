@@ -1,6 +1,7 @@
 package Tests;
 
 import Base.SharedData;
+import Help.ElementMethod;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,11 +10,12 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
 public class registerTest extends SharedData {
-
-
+//ElementMethod-clasa
+//elementMethod-obiectu
+public ElementMethod elementMethod;
     @Test
     public void register(){
-
+    elementMethod=new ElementMethod(driver);
 
         WebElement skipElement=driver.findElement(By.id("btn2"));
         skipElement.click();
@@ -71,18 +73,22 @@ public class registerTest extends SharedData {
         WebElement selectElement=driver.findElement(By.cssSelector("span[role='combobox']"));
         selectElement.click();
 
-
         WebElement countyinputElement=driver.findElement(By.className("select2-search__field"));
         countyinputElement.sendKeys("Australia");
         countyinputElement.sendKeys(Keys.ENTER);
 
-        WebElement yearElement=driver.findElement(By.id("yearbox"));
-        Select yearSelect= new Select(yearElement);
-        yearSelect.selectByValue("1995");
-        yearElement.click();
 
         WebElement uploadphotoElement=driver.findElement(By.cssSelector("div>input[id=\"imagesrc\"]"));
         uploadphotoElement.sendKeys("C:\\Users\\Simona\\Desktop\\1.JPG");
+
+        WebElement skillsElement= driver.findElement(By.id("Skills"));
+        elementMethod.selectelementbytext(skillsElement,"C++");
+
+        WebElement yearElement= driver.findElement(By.id("yearbox"));
+        elementMethod.selectelementbyvalue(yearElement,"1995");
+
+        WebElement monthElement= driver.findElement(By.cssSelector("div>select[ng-model='monthbox']"));
+        elementMethod.selectelementbytext("July");
 
 
 

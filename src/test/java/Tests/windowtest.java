@@ -1,6 +1,7 @@
 package Tests;
 
 import Base.SharedData;
+import Help.WindowMethods;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -11,8 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class windowtest extends SharedData {
+    public WindowMethods windowMethods;
     @Test
     public void windowtest(){
+        //initializare obiect
+        windowMethods=new WindowMethods(driver);
         WebElement skipElement=driver.findElement(By.id("btn2"));
         skipElement.click();
 
@@ -29,40 +33,22 @@ public class windowtest extends SharedData {
         WebElement newTabok=driver.findElement(By.cssSelector("#Tabbed>a>button"));
         newTabok.click();
 
-        System.out.println("Titlul paginii"+ driver.getTitle());
-        List<String> tabs=new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
-        System.out.println("Titlul paginii 2"+ driver.getTitle());
+       windowMethods.switchtotab(1);
+       //m-am mutat pe tab
+       windowMethods.closecurrenttab();
+       //inpoi pe tab-ul anterior
+       windowMethods.switchtotab(0);
 
-        driver.close();
-        driver.switchTo().window(tabs.get(0));
-        System.out.println("Titlul paginii"+ driver.getTitle());
-
-        windowoptions.get(1).click();
+        windowoptions.get(2).click();
         WebElement newseperate=driver.findElement(By.cssSelector("#Seperate>button"));
         newseperate.click();
 
-        System.out.println("Titlul paginii"+driver.getTitle());
-        List<String> window=new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(window.get(1));
-        System.out.println("Titlul paginii 2"+ driver.getTitle());
 
-        driver.close();
-        driver.switchTo().window(window.get(0));
-        System.out.println("Titlul paginii"+ driver.getTitle());
-
-        windowoptions.get(2).click();
-        WebElement multiple=driver.findElement(By.cssSelector("#Multiple>button"));
-        multiple.click();
-
-        System.out.println("Titlul paginii"+driver.getTitle());
-        List<String> multipletabs=new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(multipletabs.get(1));
-        System.out.println("Titlul paginii 2"+ driver.getTitle());
-
-        driver.close();
-        driver.switchTo().window(multipletabs.get(0));
-        System.out.println("Titlul paginii"+ driver.getTitle());
+        windowMethods.switchtotab(2);
+        windowMethods.closecurrenttab();
+        windowMethods.switchtotab(1);
+        windowMethods.closecurrenttab();
+        windowMethods.switchtotab(0);
 
 
 
