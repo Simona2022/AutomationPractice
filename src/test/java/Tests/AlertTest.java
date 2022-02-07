@@ -15,10 +15,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class AlertBranch extends SharedData {
+public class AlertTest extends SharedData {
     public ElementMethod elementMethod;
     public PageMethods pageMethods;
     public AlertMethods alertMethods;
+
     @Test
     public void testautomat(){
 
@@ -27,22 +28,24 @@ public class AlertBranch extends SharedData {
         alertMethods=new AlertMethods(driver);
 
         WebElement skipElement=driver.findElement(By.id("btn2"));
-       elementMethod.clickElement(skipElement);
+        elementMethod.clickElement(skipElement);
 
         WebElement switchtoElemet= driver.findElement(By.xpath("//a[text()='SwitchTo']"));
-        Actions action=new Actions(driver);
-        action.moveToElement(switchtoElemet).perform();
+        elementMethod.movetoElement(switchtoElemet);
 
         WebElement aletElement= driver.findElement(By.xpath("//a[text()='Alerts']"));
         elementMethod.clickElement(aletElement);
+
         //get-merge catre pagina si asteapta sa se incarce
         //navgate-merge catre pagina
 
         pageMethods.navigateElement("http://demo.automationtesting.in/Alerts.html");
+
         List<WebElement> alertoptions= driver.findElements(By.cssSelector(".nav-tabs>li>a"));
         alertoptions.get(0).click();
+
         WebElement alertokelement=driver.findElement(By.cssSelector("#OKTab>button"));
-        alertokelement.click();
+        elementMethod.clickElement(alertokelement);
 
         //wait explicit
         WebDriverWait waitexplicit=new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -60,14 +63,13 @@ public class AlertBranch extends SharedData {
 
         alertoptions.get(1).click();
         WebElement alertokcancelelement=driver.findElement(By.cssSelector("#CancelTab>button"));
-        alertokcancelelement.click();
+        elementMethod.clickElement(alertokcancelelement);
         alertMethods.cancelAlert();
 
         alertoptions.get(2).click();
         WebElement textbox=driver.findElement(By.cssSelector("#Textbox>button"));
-        textbox.click();
-        alertMethods.acceptfillAlert("pauza");
-
+        elementMethod.clickElement(textbox);
+        alertMethods.acceptfillAlert("Pauza");
 
     }
 }

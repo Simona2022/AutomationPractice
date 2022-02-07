@@ -21,27 +21,30 @@ public class ElementMethod {
        waitElement(elemente);
         elemente.click();
     }
+
     public void waitElement(WebElement element){
         WebDriverWait wait =new WebDriverWait(driver, Duration.ofSeconds(60));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
+
     public void fillElement(WebElement element, String value){
         waitElement(element);
         element.sendKeys(value);
     }
-        public void movetoElement(WebElement element){
-            Actions action=new Actions(driver);
-            action.moveToElement(element).perform();}
-    public void validateElementtest(WebElement element,String value) {
 
-        String actualmsg = element.getText();
-        Assert.assertEquals("Textl cautat nu e corect", value, actualmsg);
+    public void movetoElement(WebElement element){
+        Actions action=new Actions(driver);
+        action.moveToElement(element).perform();}
+
+    public void validateElementtest(WebElement element,String value) {
+        waitElement(element);
+        String actualErrorMessage = element.getText();
+        Assert.assertEquals("Textul cautat nu e corect.",value, actualErrorMessage);
     }
 
     public void selectelementbytext(WebElement element, String value){
         Select skills =new Select(element);
         skills.selectByVisibleText(value);
-
     }
     public void selectelementbyvalue(WebElement element, String value){
         Select skills =new Select(element);

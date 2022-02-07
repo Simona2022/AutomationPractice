@@ -12,10 +12,12 @@ public class PageMethods {
     public PageMethods(WebDriver driver) {
         this.driver = driver;
     }
+
     public void navigateElement(String value){
         driver.navigate().to(value);
         wiatoLoadURL(value);
     }
+
     public void wiatoLoadURL(String value){
         WebDriverWait waitexplicit=new WebDriverWait(driver, Duration.ofSeconds(10));
         waitexplicit.until(ExpectedConditions.urlToBe(value));

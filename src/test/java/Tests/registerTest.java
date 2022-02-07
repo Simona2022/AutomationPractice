@@ -10,53 +10,51 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
 public class registerTest extends SharedData {
-//ElementMethod-clasa
-//elementMethod-obiectu
+
 public ElementMethod elementMethod;
+
     @Test
+
     public void register(){
+
     elementMethod=new ElementMethod(driver);
 
         WebElement skipElement=driver.findElement(By.id("btn2"));
-        skipElement.click();
+        elementMethod.clickElement(skipElement);
+
         WebElement firstnameElement=driver.findElement(By.cssSelector("input[placeholder='First Name']"));
-        String firstnamevalue="Simona";
-        firstnameElement.sendKeys(firstnamevalue);
+        elementMethod.fillElement(firstnameElement,"Simonq");
 
         WebElement lastnameElement=driver.findElement(By.cssSelector("input[placeholder='Last Name']"));
-        String lastnamevalue="Andrei";
-        lastnameElement.sendKeys(lastnamevalue);
+        elementMethod.fillElement(lastnameElement,"Andrei");
 
-       // WebElement adressElement= driver.findElement(By.cssSelector("input[ng-model='Adress']"));
-       // String adressvalue="str. Dunarii";
-       // adressElement.sendKeys(adressvalue);
+        WebElement adressElement= driver.findElement(By.cssSelector("textarea[rows='3']"));
+        elementMethod.fillElement(adressElement,"str. Dunarii, nr.10");
 
         WebElement emailadressElement=driver.findElement(By.cssSelector("input[ng-model='EmailAdress']"));
-        String emailadressvalue="gigi@gmail.com";
-        emailadressElement.sendKeys(emailadressvalue);
+        elementMethod.fillElement(emailadressElement, "gigi@yahoo.com");
 
         WebElement phoneElement=driver.findElement(By.cssSelector("input[ng-model='Phone']"));
-        String phonevalue="07438973";
-        phoneElement.sendKeys(phonevalue);
+        elementMethod.fillElement(phoneElement, "07462747");
 
         WebElement genderElement=driver.findElement(By.cssSelector("input[value='FeMale']"));
-        genderElement.click();
+        elementMethod.clickElement(genderElement);
 
         WebElement hobbiesElement=driver.findElement(By.id("checkbox2"));
-        hobbiesElement.click();
+        elementMethod.clickElement(hobbiesElement);
 
         WebElement passwordElement=driver.findElement(By.id("firstpassword"));
-        String passwordvalue="12345";
-        passwordElement.sendKeys(passwordvalue);
+        elementMethod.fillElement(passwordElement,"12345");
 
         WebElement password2Element=driver.findElement(By.id("secondpassword"));
-        String password2value="12345";
-        password2Element.sendKeys(password2value);
+        elementMethod.fillElement(password2Element,"12345");
 
         WebElement languageElement=driver.findElement(By.id("msdd"));
-        languageElement.click();
+        elementMethod.clickElement(languageElement);
+
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,300)");
+
         List<WebElement> languageOption= driver.findElements(By.cssSelector("ul.ui-autocomplete.ui-front>li>a"));
         for (int index=0; index< languageOption.size();index++){
             if (languageOption.get(index).getText().equals("Arabic")
@@ -71,12 +69,11 @@ public ElementMethod elementMethod;
         genderElement.click();
 
         WebElement selectElement=driver.findElement(By.cssSelector("span[role='combobox']"));
-        selectElement.click();
+        elementMethod.clickElement(selectElement);
 
         WebElement countyinputElement=driver.findElement(By.className("select2-search__field"));
-        countyinputElement.sendKeys("Australia");
+        elementMethod.fillElement(countyinputElement,"Australia");
         countyinputElement.sendKeys(Keys.ENTER);
-
 
         WebElement uploadphotoElement=driver.findElement(By.cssSelector("div>input[id=\"imagesrc\"]"));
         uploadphotoElement.sendKeys("C:\\Users\\Simona\\Desktop\\1.JPG");
@@ -88,7 +85,10 @@ public ElementMethod elementMethod;
         elementMethod.selectelementbyvalue(yearElement,"1995");
 
         WebElement monthElement= driver.findElement(By.cssSelector("div>select[ng-model='monthbox']"));
-        elementMethod.selectelementbytext("July");
+        elementMethod.selectelementbytext(monthElement,"July");
+
+        WebElement dayElement=driver.findElement(By.id("daybox"));
+        elementMethod.selectelementbyvalue(dayElement,"3");
 
 
 

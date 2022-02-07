@@ -22,13 +22,14 @@ public class AlertMethods {
         waitAlert();
         Alert alert = driver.switchTo().alert();
         alert.accept();
-
     }
+
     public void cancelAlert(){
         waitAlert();
         Alert alert = driver.switchTo().alert();
         alert.dismiss();
     }
+
     public void acceptfillAlert(String value){
         waitAlert();
         Alert alert = driver.switchTo().alert();

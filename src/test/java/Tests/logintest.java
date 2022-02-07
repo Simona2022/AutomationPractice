@@ -2,6 +2,7 @@ package Tests;
 
 import Base.SharedData;
 import Help.ElementMethod;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,19 +19,19 @@ public class logintest extends SharedData {
     elementMethod=new ElementMethod(driver);
 
         WebElement signinElement=driver.findElement(By.id("btn1"));
-        signinElement.click();
+        elementMethod.clickElement(signinElement);
+
         WebElement emailElement=driver.findElement(By.cssSelector("input[placeholder='E mail']"));
-        String emailvalue="simona@yahoo.com";
-        emailElement.sendKeys(emailvalue);
+        elementMethod.fillElement(emailElement,"simona@123.com");
+
         WebElement parolaElement= driver.findElement(By.cssSelector("input[placeholder='Password']"));
-        String parolavalue="1234";
-        parolaElement.sendKeys(parolavalue);
+        elementMethod.fillElement(parolaElement,"12345");
+
         WebElement enterElement=driver.findElement(By.id("enterbtn"));
-        enterElement.click();
+        elementMethod.clickElement(enterElement);
 
-        WebElement errorElemnt=driver.findElement(By.id(""));
-        elementMethod.validateElementtest(errorElemnt,"invalid password or adress");
-
+        WebElement errorMessage = driver.findElement(By.id("errormsg"));
+        elementMethod.validateElementtest(errorMessage,"Invalid User Name or PassWord");
 
     }
 }
